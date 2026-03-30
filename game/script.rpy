@@ -14,7 +14,7 @@ label start:
     transform middle:
         xalign 0.45
         yalign 0.5
-        zoom 1.2
+        zoom 2
 
     show wave at middle
     e "Hewooo!!! Wanna go shopping together?"
@@ -40,13 +40,19 @@ label start:
     jump ChoseTransport
 label ChoseTransport:
 
-    hide cab
-    hide rickshaw
-    
+    show good choice at middle
     if transport=="rickshaw":
-        show good choice at middle
+        hide car
         "Let's use the Rickshaw!!!"
     elif transport == "cab":
-        show yay at middle
+        hide rickshaw
         "Right, a cab. Obviously."
+
+label ArriveAtMarket:
+    scene market
+    show yay:
+        xalign 0.75
+        yalign 1.2
+        zoom 1.9
+    "We're here!!"
 return
