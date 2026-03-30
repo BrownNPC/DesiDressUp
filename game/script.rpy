@@ -48,11 +48,41 @@ label ChoseTransport:
         hide rickshaw
         "Right, a cab. Obviously."
 
+default bangles_color="" # green or red
+
 label ArriveAtMarket:
     scene market
-    show yay:
+
+    transform foreground:
         xalign 0.75
         yalign 1.2
         zoom 1.9
+    
+    transform item_slot:
+        xalign 0.25
+        yalign 0.5
+        zoom 0.3
+    
+    show yay at foreground
+    
     "We're here!!"
+
+    hide yay
+    show thinking at foreground
+    "I've been hearing about some Kashmiri bangles recently.."
+    hide thinking
+    show yay at foreground
+    "I wonder which ones would suit me the best!"
+    show bangles pair at item_slot
+    hide yay
+    show thinking at foreground
+    "Green or Red? Hmmm.."
+    menu:
+        "Green":
+            $ bangles_color = "green"
+        "Red":
+            $ bangles_color = "red"
+    hide thinking
+    show good choice at foreground
+    "I'll go with the [bangles_color] ones!"
 return
