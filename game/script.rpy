@@ -43,13 +43,14 @@ label ChoseTransport:
     show good choice at middle
     if transport=="rickshaw":
         hide car
-        "Let's use the Rickshaw!!!"
+        e "Let's use the Rickshaw!!!"
     elif transport == "cab":
         hide rickshaw
-        "Right, a cab. Obviously."
+        e "Right, a cab. Obviously."
 
 default bangles_color="" # green or red
-
+default clips_type="" # star or bow
+default earrings_type = "" #heavy or minimal
 label ArriveAtMarket:
     scene market
 
@@ -65,24 +66,81 @@ label ArriveAtMarket:
     
     show yay at foreground
     
-    "We're here!!"
+    e "We're here!!"
 
     hide yay
     show thinking at foreground
-    "I've been hearing about some Kashmiri bangles recently.."
+    e "I've been hearing about some Kashmiri bangles recently.."
     hide thinking
     show yay at foreground
-    "I wonder which ones would suit me the best!"
+    e "I wonder which ones would suit me the best!"
     show bangles pair at item_slot
     hide yay
     show thinking at foreground
-    "Green or Red? Hmmm.."
+    e "Green or Pink? Hmmm.."
     menu:
         "Green":
             $ bangles_color = "green"
-        "Red":
-            $ bangles_color = "red"
+        "Pink":
+            $ bangles_color = "pink"
     hide thinking
     show good choice at foreground
-    "I'll go with the [bangles_color] ones!"
+    e "I'll go with the [bangles_color] ones!"
+
+    hide bangles pair
+    show clips pair at item_slot
+    e "And, I also want some hair clips"
+
+    hide good choice
+    show thinking at foreground
+    e "Which ones?"
+    menu:
+        "Bow":
+            $clips_type = "bow"
+        "Star":
+            $clips_type = "star"
+    hide thinking
+    show good choice at foreground
+    e "I like [clips_type]s!"
+    hide clips pair
+    show earrings pair at item_slot
+    hide good choice
+    show thinking at foreground
+    e "And which earrings?"
+    menu:
+        "Heavy":
+            $earrings_type="heavy"
+        "Minimal":
+            $earrings_type="minimal"
+    hide thinking
+    show good choice at foreground
+    e "You like the [earrings_type] ones? Okie dokie!!"
+
+    hide good choice
+    show yay at foreground
+    e "Lets head home!"
+    hide earrings pair
+    hide yay
+    jump ArriveAtHome
+label ArriveAtHome:
+    scene bedroom
+    show yay at foreground
+    e "I'll show the final look"
+    hide yay
+    jump FinalLook
 return
+label FinalLook:
+    scene final
+    if earrings_type == "heavy":
+        show earrings heavy
+    elif earrings_type == "minimal":        
+        show earrings minimal
+    if clips_type == "star":
+        show clips star
+    elif clips_type=="bow":
+        show clips bow
+    if bangles_color == "green":
+        show bangles green
+    elif bangles_color == "pink":
+        show bangles pink
+    e "What do you think?"
