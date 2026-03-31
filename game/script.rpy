@@ -9,7 +9,6 @@ default transport="" # "rickshaw" or "cab"
 
 # The game starts here.
 label start:
-    play music "music.mp3"
     scene bedroom
     
     transform middle:
@@ -63,6 +62,7 @@ label ChoseTransport:
     elif transport == "cab":
         hide rickshaw
         e "Right, a cab. Obviously."
+        play sound "car.ogg" volume 4.0
         play sound "show.ogg"
 
 default bangles_color="" # green or red
