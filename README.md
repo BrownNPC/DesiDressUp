@@ -1,4 +1,4 @@
-# A Cutesy dress up game. [Play — Itch.io](brownnpc.itch.io/desi-dress-up)
+# A Cutesy dress up game. [Play on Itch.io](brownnpc.itch.io/desi-dress-up)
 
 
 All the lovely art is made by Shaheera:
